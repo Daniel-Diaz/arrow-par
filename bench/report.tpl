@@ -36,6 +36,11 @@
 <li><i>parallel</i> - same algorithm, using parallel arrows.</li>
 </ul>
 
+<p>
+Please, note that the results depend heavily on the computer where the benchmark
+is run. The code can be found <a href="https://github.com/Daniel-Diaz/arrow-par/blob/master/bench/bench.hs">here</a>.
+</p>
+
 <h2>overview</h2>
 
 <p><a href="#grokularation">want to understand this report?</a></p>

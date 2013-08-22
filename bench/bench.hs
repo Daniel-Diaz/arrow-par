@@ -4,6 +4,7 @@ import Criterion.Main
 import Control.Arrow.Par
 import Data.List (foldl',partition)
 import Data.Maybe (maybeToList)
+import System.Random
 
 -- FUNCTIONS
 
@@ -35,14 +36,14 @@ qsort2 (x:xs) =
 qsort2 [] = []
 
 testlist :: [Int]
-testlist = [2000,1999 .. 1]
+testlist = take 30000 $ randoms $ mkStdGen 0
 
 -- BENCHMARKS
 
 main :: IO ()
 main = defaultMain [
-    bgroup "sum"   [ bench "original" $ nf sum1 10000000
-                   , bench "parallel" $ nf sum2 10000000
+    bgroup "sum"   [ bench "original" $ nf sum1 1000000
+                   , bench "parallel" $ nf sum2 1000000
                      ]
   , bgroup "qsort" [ bench "original" $ nf qsort1 testlist
                    , bench "parallel" $ nf qsort2 testlist
