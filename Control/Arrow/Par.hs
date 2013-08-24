@@ -75,6 +75,8 @@ module Control.Arrow.Par (
     --   hiding @id@ and @(.)@ to avoid name conflicts.
   , module Control.Category
   , module Control.Arrow
+   -- * More combinators
+  , arr2
     ) where
 
 import Prelude hiding (id,(.))
@@ -152,3 +154,9 @@ type Par = ParM Identity
 -- | Feed a 'Par' arrow with an input and return the result.
 applyPar :: Par a b -> a -> b
 applyPar a = runIdentity . applyParM a
+
+-- MORE COMBINATORS
+
+-- | Create an arrow from a binary operator.
+arr2 :: Arrow arr => (a -> b -> c) -> arr (a,b) c
+arr2 = arr . uncurry
